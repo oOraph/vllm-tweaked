@@ -1,0 +1,13 @@
+--- hermes_tool_parser.py.orig	2025-07-03 18:52:53.575503365 +0200
++++ hermes_tool_parser.py	2025-07-03 18:58:34.187071071 +0200
+@@ -43,8 +43,9 @@
+         self.tool_call_start_token: str = "<tool_call>"
+         self.tool_call_end_token: str = "</tool_call>"
+ 
++        logger.error("TMP_DEBUG_"*100)
+         self.tool_call_regex = re.compile(
+-            r"<tool_call>(.*?)</tool_call>|<tool_call>(.*)", re.DOTALL)
++            r"(?:<tool_call>)+(.*?)</tool_call>|<tool_call>(.*)", re.DOTALL)
+         self.scratch_pad_regex = re.compile(
+             r"<scratch_pad>(.*?)</scratch_pad>", re.DOTALL)
+ 
