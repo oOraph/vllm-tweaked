@@ -1,3 +1,23 @@
+diff --git a/vllm/entrypoints/openai/serving_chat.py b/vllm/entrypoints/openai/serving_chat.py
+index 79eac184a..868e236e6 100644
+--- a/vllm/entrypoints/openai/serving_chat.py
++++ b/vllm/entrypoints/openai/serving_chat.py
+@@ -200,6 +200,15 @@ class OpenAIServingChat(OpenAIServing):
+             logger.exception("Error in preprocessing prompt inputs")
+             return self.create_error_response(f"{e} {e.__cause__}")
+ 
++        logger.info("DEBUG "*100)
++
++        logger.info("REQUEST PROMPTS %s", request_prompts)
++        logger.info("CONVERSATION %s", conversation)
++
++        # Not sure to understand what the engine prompt is: from what I understand this is the raw /tokenized input
++        # fed to the llm (so what we are looking for)
++        logger.info("ENGINE PROMPTS %s", engine_prompts)
++
+         request_id = "chatcmpl-" \
+                      f"{self._base_request_id(raw_request, request.request_id)}"
+ 
 diff --git a/vllm/entrypoints/openai/tool_parsers/hermes_tool_parser.py b/vllm/entrypoints/openai/tool_parsers/hermes_tool_parser.py
 index c7030d34d..7a2765838 100644
 --- a/vllm/entrypoints/openai/tool_parsers/hermes_tool_parser.py
