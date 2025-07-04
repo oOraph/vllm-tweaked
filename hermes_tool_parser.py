@@ -45,7 +45,7 @@ class Hermes2ProToolParser(ToolParser):
 
         logger.error("TMP_DEBUG_"*100)
         self.tool_call_regex = re.compile(
-            r"(?:<tool_call>)+(.*?)</tool_call>|<tool_call>(.*)", re.DOTALL)
+            r"(?:<tool_call>\s*)+(.*?)</tool_call>|<tool_call>(.*)", re.DOTALL)
         self.scratch_pad_regex = re.compile(
             r"<scratch_pad>(.*?)</scratch_pad>", re.DOTALL)
 
